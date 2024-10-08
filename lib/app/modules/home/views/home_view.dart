@@ -38,6 +38,13 @@ class HomeView extends GetView<HomeController> {
 
               Text("Api called: ${controller.x.value}"),
 
+              Text("Socket ID: ${controller.socketId.value}"),
+              Text("Live Position: ${controller.livePosition.value}"),
+
+              Text("Current Position: ${controller.currentPosition.value}"),
+
+
+
             ],
           ),
         ),

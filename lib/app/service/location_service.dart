@@ -20,13 +20,14 @@ class LocationService {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         // Permissions are denied, return null
+
         return null;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, return null
-      return null;
+      openAppSettings();
     }
 
     // Get the current location
@@ -34,9 +35,9 @@ class LocationService {
   }
   Stream<Position> getPositionStream() {
     return Geolocator.getPositionStream(
-      locationSettings: LocationSettings(
+      locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: 10, // Minimum distance (in meters) to trigger an update
+        distanceFilter: 10,
       ),
     );
   }
