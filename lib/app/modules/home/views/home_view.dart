@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -35,16 +34,10 @@ class HomeView extends GetView<HomeController> {
                     : Icons.location_off,
                 size: 50,
               ),
-
-              Text("Api called: ${controller.x.value}"),
-
+              Text("Api called: ${controller.apiCalled.value}"),
               Text("Socket ID: ${controller.socketId.value}"),
               Text("Live Position: ${controller.livePosition.value}"),
-
               Text("Current Position: ${controller.currentPosition.value}"),
-
-
-
             ],
           ),
         ),

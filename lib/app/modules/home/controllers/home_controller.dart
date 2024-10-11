@@ -6,9 +6,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:logger/logger.dart';
 
 import '../../../service/location_service.dart';
 
@@ -21,9 +21,8 @@ class HomeController extends GetxController {
   final changedLocation = false.obs;
   final socketId = ''.obs;
 
-  final x = 0.obs;
+  final apiCalled = 0.obs;
   var logger = Logger();
-
 
   @override
   void onInit() {
@@ -38,7 +37,7 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
-    x.value = 0;
+    apiCalled.value = 0;
     positionStreamSubscription.cancel();
     socket.dispose();
     super.onClose();
@@ -121,7 +120,7 @@ class HomeController extends GetxController {
 
   Future<void> callJoinApi(String uuid, double lat, double lon, String degree,
       String socketId) async {
-    x.value++;
+    apiCalled.value++;
     final dio = Dio();
     const url = 'http://192.168.101.34:3001/api/sr_join';
     final data = {
