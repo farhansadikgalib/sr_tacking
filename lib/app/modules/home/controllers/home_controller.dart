@@ -27,7 +27,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     initBackgroundFetch();
-
     requestLocationPermission();
     super.onInit();
     connectToSocket();
